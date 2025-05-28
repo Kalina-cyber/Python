@@ -5,7 +5,7 @@ import hashlib
 conn = sqlite3.connect('users.db')
 cursor = conn.cursor()
 
-# Створення таблиці, якщо ще не створена
+# Створення таблиці
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS users (
     login TEXT PRIMARY KEY,
@@ -99,7 +99,7 @@ def main():
         print("\n1. Додати користувача")
         print("2. Оновити пароль")
         print("3. Аутентифікація")
-        print("4. Перегляду усіх користувачів")
+        print("4. Переглянути усіх користувачів")
         print("5. Видалити користувача")
         print("6. Вихід")
 
