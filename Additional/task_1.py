@@ -138,14 +138,17 @@ if __name__ == '__main__':
     insert_event_types(conn)
 
     # Приклад додавання джерел та подій
-    try:
-        add_event_source(conn, "Firewall_A", "192.168.1.1", "Firewall")
-        add_event_source(conn, "Web_Server_Logs", "192.168.1.10", "Web Server")
-        add_event_source(conn, "IDS_Sensor_B", "192.168.1.20", "IDS")
-    except:
-        pass
+    for name, ip, type_ in [
+        ("Firewall_A", "192.168.1.1", "Firewall"),
+        ("Web_Server_Logs", "192.168.1.10", "Web Server"),
+        ("IDS_Sensor_B", "192.168.1.20", "IDS")
+    ]:
+        try:
+            add_event_source(conn, name, ip, type_)
+        except Exception as e:
+            print(f"Не вдалося додати {name}: {e}")
 
-    # Приклад запису подій (оновлювати id згідно фактичних значень у таблицях)
+    # Приклад запису подій
     for i in range(10):
         log_security_event(
             conn,
